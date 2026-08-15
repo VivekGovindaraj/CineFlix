@@ -1,0 +1,41 @@
+PHASE 1
+Project setup
+        ↓
+PHASE 2
+React Router
+        ↓
+PHASE 3
+TMDB API service
+        ↓
+PHASE 4
+Redux / RTK Query
+        ↓
+PHASE 5
+Navbar + Layout
+        ↓
+PHASE 6
+MovieCard + MovieRow
+        ↓
+PHASE 7
+Home
+        ↓
+PHASE 8
+Movies / category pages
+        ↓
+PHASE 9
+Search + filters
+        ↓
+PHASE 10
+Movie modal
+        ↓
+PHASE 11
+Movie details
+        ↓
+PHASE 12
+Trailer + recommendations
+        ↓
+PHASE 13
+Loading/error handling
+        ↓
+PHASE 14
+Cleanup/refactoring

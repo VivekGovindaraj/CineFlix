@@ -1,0 +1,43 @@
+src/
+│
+├── app/
+│   └── store.js
+│
+├── assets/
+│
+├── components/
+│   ├── Navbar.jsx
+│   ├── MobileNavbar.jsx
+│   ├── MovieCard.jsx
+│   ├── MovieRow.jsx
+│   ├── MovieGrid.jsx
+│   ├── MovieBanner.jsx
+│   ├── MovieModal.jsx
+│   ├── SearchBar.jsx
+│   ├── MovieFilters.jsx
+│   └── MovieSkeleton.jsx
+│
+├── pages/
+│   ├── Home.jsx
+│   ├── Movies.jsx
+│   ├── NowPlaying.jsx
+│   ├── Popular.jsx
+│   ├── TopRated.jsx
+│   ├── Upcoming.jsx
+│   ├── Search.jsx
+│   └── MovieDetails.jsx
+│
+├── features/
+│   └── movies/
+│       ├── movieApi.js
+│       └── movieSlice.js
+│
+├── services/
+│   └── tmdbApi.js
+│
+├── routes/
+│   └── AppRoutes.jsx
+│
+├── App.jsx
+├── main.jsx
+└── index.css
