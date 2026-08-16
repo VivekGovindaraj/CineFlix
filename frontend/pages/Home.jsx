@@ -1,4 +1,9 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
+import { useGetNowPlayingQuery, useGetTopRatedQuery, useGetPopularQuery, useGetUpcomingQuery } from '../src/services/movieAPI';
+import MovieRow from '../components/MovieRow';
+
+
 
 const Home = () => {
 
@@ -6,6 +11,20 @@ const Home = () => {
         console.log("Scroll direction:", direction);
     };
 
+    const { data: nowPlayingData } = useGetNowPlayingQuery();
+    const { data: topRatedData } = useGetTopRatedQuery();
+    const { data: popularData } = useGetPopularQuery();
+    const { data: upcomingData } = useGetUpcomingQuery();
+    console.log(nowPlayingData, topRatedData, popularData, upcomingData)
+
+  
+
+    const nowPlayingMovies = nowPlayingData?.results || [];
+    const topRatedMovies = topRatedData?.results || [];
+    const popularMovies = popularData?.results || [];
+    const upcomingMovies = upcomingData?.results || [];
+
+   
 
   return (
     <>
@@ -15,9 +34,10 @@ const Home = () => {
    <nav className="navbar navbar-expand-lg sticky-top topNavBar">
     <div className="container-fluid">
       {/* <!-- Logo --> */}
-      <a href="index.html" className="navbar-brand text-white">
-        Cine Prime
-      </a>
+      <Link to="/"  className="navbar-brand text-white">
+         Cine Prime
+      </Link>
+      
       {/* <!-- Mobile Toggle Button --> */}
      <button className="navbar-toggler bg-white d-lg-none"
         type="button"
@@ -34,39 +54,27 @@ const Home = () => {
         <ul className="navbar-nav mx-auto text-center">
 
           <li className="nav-item">
-            <a href="index.html" className="nav-link active">
-              Home
-            </a>
+            <Link to="/" className="nav-link active">Home</Link>
           </li>
 
           <li className="nav-item">
-            <a href="movies.html" className="nav-link">
-              Movies
-            </a>
+            <Link to="/movies" className="nav-link">Movies</Link>
           </li>
 
           <li className="nav-item">
-            <a href="nowPlaying.html" className="nav-link">
-              Now Playing
-            </a>
+            <Link to="/nowPlaying" className="nav-link">Now Playing</Link>
           </li>
 
           <li className="nav-item">
-            <a href="topRated.html" className="nav-link">
-              Top Rated
-            </a>
+            <Link to="/topRated" className="nav-link">Top Rated</Link>
           </li>
 
           <li className="nav-item">
-            <a href="popular.html" className="nav-link">
-              Popular
-            </a>
+            <Link to="/popular" className="nav-link">Popular</Link>
           </li>
 
           <li className="nav-item">
-            <a href="upComing.html" className="nav-link">
-              Upcoming
-            </a>
+            <Link to="/upComing" className="nav-link">Upcoming</Link>
           </li>
 
         </ul>
@@ -101,7 +109,7 @@ const Home = () => {
    {/* <!-- Mobile Offcanvas --> */}
 <div
   className="offcanvas  offcanvas-start text-bg-dark bg-dark"
-  tabindex="-1"
+  tabIndex="-1"
   id="mobileMenu">
 
   <div className="offcanvas-header">
@@ -126,24 +134,30 @@ const Home = () => {
         <a href="index.html" className="nav-link active rounded-1">Home</a>
       </li> --> */}
 
+      {/* <li className="nav-item">
+        <Link to="/" className="nav-link rounded-1">Home</Link>
+        
+      </li> */}
       <li className="nav-item">
-        <a href="movies.html" className="nav-link rounded-1">Movies</a>
+        <Link to="/movies" className="nav-link rounded-1">Movies</Link>
+        
       </li>
 
       <li className="nav-item">
-        <a href="nowPlaying.html" className="nav-link rounded-1">Now Playing</a>
+        <Link to="/nowPlaying" className="nav-link rounded-1">Now Playing</Link>
       </li>
 
       <li className="nav-item">
-        <a href="topRated.html" className="nav-link rounde-1">Top Rated</a>
+         <Link to="/topRated" className="nav-link rounded-1">Top Rated</Link>
+        
       </li>
 
       <li className="nav-item">
-        <a href="popular.html" className="nav-link rounded-1">Popular</a>
+        <Link to="/popular" className="nav-link rounded-1">Popular</Link>
       </li>
 
       <li className="nav-item">
-        <a href="upComing.html" className="nav-link rounded-1">Upcoming</a>
+        <Link to="/upComing" className="nav-link rounded-1">Upcoming</Link>
       </li>
 
     </ul>
@@ -167,53 +181,18 @@ const Home = () => {
   
 
    <div className="movieContainer container-fluid mt-3 px-0">
+      {/* section now playing */}
+    <MovieRow id="nowPlaying" title="Now Playing" scroll="scroll-btn1" movies={nowPlayingMovies} />
 
-    <div className="row-title" id="nowPlaying">&emsp13;Now Playing</div>
+    {/* section top Rated */}
+    <MovieRow id="topRated" title="Top Rated" scroll="scroll-btn2" movies={topRatedMovies} />
 
-    {/* <div className="movie-wrapper">
-      <button className="scroll-btn scroll-btn1 left d-lg-block d-none" onClick="scrollRow(this, -300)"><</button>
-       <div className="movie-row px-3 mt-2 nowPlaying d-flex" ></div>
-        <button className="scroll-btn scroll-btn1 right d-lg-block d-none" onClick="scrollRow(this, 300)">></button>
-    </div> */}
-   
-         
+    {/* section popular */}
+    <MovieRow id="Popular" title="Popular" scroll="scroll-btn3" movies={popularMovies} />
 
-    
+    {/* section upcoming */}
+    <MovieRow id="upComing" title="Upcoming" scroll="scroll-btn4" movies={upcomingMovies} />
 
-    <div className="row-title mt-2" id="topRated">&emsp13;Top Rated</div>
-    {/* <div className="movie-wrapper">
-      <button className="scroll-btn scroll-btn2 left d-lg-block d-none" onClick="scrollRow(this, -300)"><</button>
-    <div className="movie-row px-3 mt-2 topRated d-flex" ></div>
-
-      <button className="scroll-btn scroll-btn2 right d-lg-block d-none" onClick="scrollRow(this, 300)">></button>
-    </div> */}
-      
-      
-
-    
-
-    <div className="row-title mt-2" id="Popular">&emsp13;Popular</div>
-
-     <div className="movie-wrapper">
-    
-      
-       <div className="movie-row px-3 mt-2 Popular d-flex " > </div>
-        <div className="d-flex justify-content-between">
-        {/* <button className="scroll-btn scroll-btn3 left d-lg-block d-none" onClick="scrollRow(this, -300)"><</button>
-          <button className="scroll-btn scroll-btn3 right d-lg-block d-none" onClick="scrollRow(this, 300)">></button> */}
-      </div> 
-    
-    </div>
-
-    <div className="row-title mt-2" id="upComing">&emsp13;Upcoming</div>
-     <div className="movie-wrapper">
-      {/* <button className="scroll-btn scroll-btn4 left d-lg-block d-none" onClick="scrollRow(this, -300)"><</button> */}
-    <div className="movie-row px-3 mt-2 upComing d-flex "  >
-   
-    </div>
-    {/* <button className="scroll-btn scroll-btn4 right d-lg-block d-none" onClick="scrollRow(this, 300)">></button> */}
-    </div>
-         
        
    </div>
 
@@ -221,15 +200,16 @@ const Home = () => {
 <nav className="navbar navbar-dark fixed-bottom bottom-0 d-lg-none border-top-red mobileNavBar" >
 
     <div className="container-fluid d-flex justify-content-around align-items-center  py-3">
-      <a href="search.html" className="text-white text-decoration-none nav-item-custom">
-        <i className="bi bi-search fs-1"></i>
-      </a>
-      <a href="index.html" className="text-white text-decoration-none nav-item-custom">
-        <i className="bi bi-house fs-1"></i>
-      </a>
-      <a href="#" className="text-white text-decoration-none nav-item-custom">
-        <i className="bi bi-person-circle fs-1"></i>
-      </a>
+      <Link to="search" className="text-white text-decoration-none nav-item-custom">
+          <i className="bi bi-search fs-1"></i>
+      </Link>
+      <Link to="/" className="text-white text-decoration-none nav-item-custom">
+          <i className="bi bi-house fs-1"></i>
+      </Link>
+      <Link to="#" className="text-white text-decoration-none nav-item-custom">
+           <i className="bi bi-person-circle fs-1"></i>
+      </Link>
+      
     </div>
 
    </nav>

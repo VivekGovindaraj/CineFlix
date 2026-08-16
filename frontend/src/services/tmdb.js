@@ -1,0 +1,7 @@
+const TMDB_API_KEY = import.meta.env.VITE_API_KEY;
+const TMDB_BEARER_TOKEN = import.meta.env.VITE_BEARER_TOKEN;
+const TMDB_BASE_URL = import.meta.env.VITE_BASE_URL;
+const TMDB_IMAGE_URL = import.meta.env.VITE_IMAGE_URL;
+const TMDB_BACKDROP_URL = import.meta.env.VITE_BACKDROP_URL;
+
+export {TMDB_API_KEY, TMDB_BEARER_TOKEN,TMDB_BASE_URL, TMDB_IMAGE_URL, TMDB_BACKDROP_URL }
