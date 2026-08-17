@@ -12,11 +12,11 @@ const Home = () => {
 
   
 
-    const { data: nowPlayingData } = useGetNowPlayingQuery();
-    const { data: topRatedData } = useGetTopRatedQuery();
-    const { data: popularData } = useGetPopularQuery();
-    const { data: upcomingData } = useGetUpcomingQuery();
-    const { data: animieData } = useGetUpcomingQuery();
+    const { data: nowPlayingData, isLoading, isError } = useGetNowPlayingQuery();
+    const { data: topRatedData,  isLoading, isError} = useGetTopRatedQuery();
+    const { data: popularData,  isLoading, isError} = useGetPopularQuery();
+    const { data: upcomingData , isLoading, isError} = useGetUpcomingQuery();
+    const { data: animieData, isLoading, isError } = useGetUpcomingQuery();
     console.log(nowPlayingData, topRatedData, popularData, upcomingData,animieData)
 
   
