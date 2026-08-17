@@ -33,10 +33,20 @@ export const movieAPI = createApi ({
             query: () => "/movie/upcoming",
         }),
 
+       getAnime: builder.query({
+        query: () => ({
+            url: "/discover/movie",
+            params: {
+            with_genres: "16",
+            sort_by: "popularity.desc",
+            },
+        }),
+        }),
+
 
 
     })
 })
 
-export const {useGetNowPlayingQuery, useGetTopRatedQuery, useGetPopularQuery, useGetUpcomingQuery} = movieAPI
+export const {useGetNowPlayingQuery, useGetTopRatedQuery, useGetPopularQuery, useGetUpcomingQuery, useGetAnimeQuery} = movieAPI
 
