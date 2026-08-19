@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react'
 import { useGetNowPlayingQuery,useGetPopularQuery, useGetTopRatedQuery, useGetUpcomingQuery } from '../src/services/movieAPI'
 import MovieCard from '../components/MovieCard';
 import { useDispatch } from 'react-redux';
-import { setMovieCollection } from '../src/services/movieSlice';
+// import { setMovieCollection } from '../src/services/movieSlice';
 
 
 
@@ -26,9 +26,9 @@ const Movies = () => {
 
   }, [nowPlaying, popular, topRated, upcoming])
   
-  useEffect(() => {
-    dispatch(setMovieCollection(uniqueMovies))
-  }, [uniqueMovies, dispatch])
+  // useEffect(() => {
+  //   dispatch(setMovieCollection(uniqueMovies))
+  // }, [uniqueMovies, dispatch])
   return (
     <>
      <div className="row-title ps-2">All Movies</div>

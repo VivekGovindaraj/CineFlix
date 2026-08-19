@@ -1,7 +1,9 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 
 const NavBar = () => {
+    const location =  useLocation()
+    const isSerachPath =  location.pathname === '/search'
   return (
     <>
         {/* <!-- Navbar --> */}
@@ -57,7 +59,13 @@ const NavBar = () => {
                 {/* <!-- Search Box --> */}
             <div className="d-flex flex-column align-items-center align-items-lg-end mt-3 mt-lg-0">
 
-                <Link to='/search' className="searchBoxBtn btn "><i className="bi bi-search me-1"></i> Search</Link>
+                {
+                    !isSerachPath && (
+                         <Link to='/search' className="searchBoxBtn btn "><i className="bi bi-search me-1"></i> Search</Link>
+                    )
+                }
+
+               
                 {/* <!-- <div className="input-group searchBox ">
 
                 <span className="input-group-text bg-white border-end-0">
