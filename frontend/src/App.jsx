@@ -9,6 +9,8 @@ import Search from '../pages/Search'
 import MovieDetails from '../pages/MovieDetails'
 import { Provider } from "react-redux";
 import { store } from './app/store'
+import Layout from '../pages/Layout'
+
 
 
 
@@ -21,7 +23,8 @@ function App() {
     <>
     <BrowserRouter>
     <Provider store={store}>
-      <Routes>
+      <Routes >
+      <Route element={<Layout/>}>
           <Route path="/" element={<Home/>}/>
           <Route path="/movies" element={<Movies/>}/>
           <Route path="/movies/:id" element={<MovieDetails/>}/>
@@ -30,6 +33,7 @@ function App() {
           <Route path="/popular" element={<Popular/>}/>
           <Route path="/upcoming" element={<Upcoming/>}/>
           <Route path="/search" element={<Search/>}/>
+      </Route>
       </Routes>
     </Provider>
      
