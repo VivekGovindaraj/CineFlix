@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import { useSearchMoviesQuery } from "../src/services/movieAPI";
 import MovieCard from "../components/MovieCard";
+import Pagination from "../components/Pagination";
+
 
 const Search = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] =  useState(1)
 
   const {
     data,
     isLoading,
     isError
-  } = useSearchMoviesQuery(searchTerm, {
+  } = useSearchMoviesQuery({
+    keyword:searchTerm,
+    page:page
+  }, {
     skip: !searchTerm.trim()
   });
 
@@ -18,7 +24,16 @@ const Search = () => {
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
+    setPage(1)
   };
+
+  const handlePageChange = (newpage) => {
+    setPage(newpage)
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    })
+  }
 
   return (
     <div className="container-fluid mt-4">
@@ -85,6 +100,16 @@ const Search = () => {
             movie={movie}
           />
         ))}
+
+         {/* Pagination */}
+      {searchTerm && data && (
+        <Pagination
+          currentPage={data.page}
+          totalPages={data.total_pages}
+          onPageChange={handlePageChange}
+        />
+      )}
+
 
       </div>
 

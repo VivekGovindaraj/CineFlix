@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useGetNowPlayingQuery } from '../src/services/movieAPI'
 import MovieCard from '../components/MovieCard';
+import Pagination from '../components/Pagination';
 
 
 const Nowplaying = () => {
+const [page, setPage] = useState(1)
+  const {data, isLoading, isError} = useGetNowPlayingQuery({
+    page
+  });
 
-  const {data, isLoading, isError} = useGetNowPlayingQuery();
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage)
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    })
+  }
+
+  
 
     const movies = data?.results || []
     return (
@@ -19,6 +34,11 @@ const Nowplaying = () => {
           }
           
         </div>
+
+        <Pagination
+        currentPage={data?.page}
+        totalPages={data?.total_pages}
+        onPageChange={handlePageChange} />
       </>
     )
 }

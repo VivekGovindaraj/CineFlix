@@ -1,9 +1,21 @@
 import React from 'react'
 import { useGetUpcomingQuery } from '../src/services/movieAPI';
 import MovieCard from '../components/MovieCard';
+import Pagination from '../components/Pagination';
+
 
 const Upcoming = () => {
-   const {data, isLoading, isError} = useGetUpcomingQuery();
+   const [page, setPage] = useState(1)
+   const {data, isLoading, isError} = useGetUpcomingQuery({page});
+
+    const handlePageChange = (newPage) => {
+    setPage(newPage)
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    })
+  }
 
     const movies = data?.results || []
     return (
@@ -15,6 +27,9 @@ const Upcoming = () => {
                       <MovieCard key={movie.id} movie={movie} />
                   ))
           }
+
+                    <Pagination currentPage={data?.page} totalPages={data?.total_pages} onPageChange={handlePageChange}/>
+
           
         </div>
       </>

@@ -1,6 +1,7 @@
     import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
     import { TMDB_BASE_URL, TMDB_API_KEY, TMDB_BEARER_TOKEN } from "./tmdb.js";
     import Search from "../../pages/Search.jsx";
+import { build } from "vite";
 
     export const movieAPI = createApi ({
         reducerPath : "movieAPI",
@@ -19,20 +20,41 @@
         endpoints : (builder) => ({
 
         getNowPlaying : builder.query({
-            query : () => "/movie/now_playing"
+            query : ({page}) => ({
+                url:"/movie/now_playing",
+                params :{
+                    page : page
+                }
+            })
         }),
 
         getTopRated: builder.query({
-            query: () => '/movie/top_rated'
+            
+            query :({page}) => ({
+                url:'/movie/top_rated',
+                params: {
+                    page:page
+                }
+            })
         }),
 
         getPopular : builder.query({
-            query: () => 'movie/popular'
+            query: () =>({
+                url:'movie/popular',
+                params :{
+                    page:page
+                }
+            }) 
         }),
 
-            getUpcoming: builder.query({
-                query: () => "/movie/upcoming",
-            }),
+        getUpcoming: builder.query({
+            query: () =>({
+                url:"/movie/upcoming",
+                params: {
+                    page:page
+                }
+            }) 
+        }),
 
         getAnime: builder.query({
             query: () => ({
@@ -43,12 +65,22 @@
                 },
             }),
             }),
+            getMovieVideos: builder.query({
+            query: (movieId) => `/movie/${movieId}/videos`
+            }),
 
-        searchMovies : builder.query({
-            query : (keyword) => `/search/movie?query=${keyword}`
-        })
+        searchMovies: builder.query({
+            query: ({ keyword, page }) => ({
+                url: "/search/movie",
+                params: {
+                query: keyword,
+                page: page
+                }
+            })
+            }),
 
-        })
+        }) ,
+   
     })
 
     export const {useGetNowPlayingQuery,
@@ -56,6 +88,7 @@
                     useGetPopularQuery,
                     useGetUpcomingQuery,
                     useGetAnimeQuery,
-                    useSearchMoviesQuery
+                    useSearchMoviesQuery,
+                    useGetMovieVideosQuery
                     } = movieAPI
 

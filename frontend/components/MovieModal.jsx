@@ -2,10 +2,14 @@ import React from "react";
 import { TMDB_IMAGE_URL } from "../src/services/tmdb.js";
 import { useDispatch, useSelector } from "react-redux";
 import { clearSelectedMovie } from "../src/services/movieSlice.js";
+import { useNavigate } from "react-router-dom";
+
 
 const MovieModal = () => {
 
  const dispatch = useDispatch();
+
+ const naviagate = useNavigate();
 
   const selectedMovie = useSelector(
     (state) => state.movie?.selectedMovie
@@ -65,7 +69,7 @@ const MovieModal = () => {
 
                 <div className="d-flex flex-wrap gap-2 mt-4">
 
-                  <button className="btn btn-danger btn-small">
+                  <button className="btn btn-danger btn-small" onClick={() => naviagate(`/movies/${selectedMovie.id}`)}>
                     <i className="bi bi-play-fill"></i>
                     {" "}Play
                   </button>
